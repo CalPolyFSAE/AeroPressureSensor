@@ -21,7 +21,7 @@ mconf.csport = gpio::PortE;
 mconf.cspin = 9;
 
 // Initialize SPI module 0 as master
-spi.initMaster(0, &mconf);
+spi.initMaster(1, &mconf);
 
 // Create tx/rx arrays:
 // Anticipated command is 4 MOSI command bytes, followed by 
