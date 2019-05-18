@@ -191,12 +191,11 @@ while(spi.xcvrs[1].transmitting);
 //Sensor 2
 
 spi.xcvrs[1].csport = gpio::PortC;
-spi.xcvrs[1].cspin = 2;
+spi.xcvrs[1].cspin = 3;
 
 spi.mastertx(1, tx, rx, 8);
 
 while(spi.xcvrs[1].transmitting);
-
 
 
 
@@ -308,6 +307,7 @@ flag = 1;
 
 
     while(1) {
+
       if(flag){
         // do a thing
 
