@@ -43,6 +43,11 @@
                         <data>true</data>
                      </feature>
                   </dependency>
+                  <dependency resourceType="Peripheral" resourceId="CAN0" description="Peripheral CAN0 is not initialized" problem_level="1" source="Pins:BOARD_InitPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
                   <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitPins">
                      <feature name="enabled" evaluation="equal" configuration="core0">
                         <data>true</data>
@@ -57,7 +62,6 @@
                <pins>
                   <pin peripheral="GPIOA" signal="GPIO, 3" pin_num="47" pin_signal="ADC1_SE1/PTA3/FTM3_CH1/LPI2C0_SCL/EWM_IN/LPUART0_TX"/>
                   <pin peripheral="GPIOA" signal="GPIO, 2" pin_num="48" pin_signal="ADC1_SE0/PTA2/FTM3_CH0/LPI2C0_SDA/EWM_OUT_b/LPUART0_RX"/>
-                  <pin peripheral="LPSPI0" signal="SOUT" pin_num="33" pin_signal="ADC0_SE5/ADC1_SE15/PTB1/LPUART0_TX/LPSPI0_SOUT/TCLK0"/>
                   <pin peripheral="LPSPI0" signal="SCK" pin_num="32" pin_signal="ADC0_SE6/PTB2/FTM1_CH0/LPSPI0_SCK/FTM1_QD_PHB/TRGMUX_IN3"/>
                   <pin peripheral="LPSPI0" signal="SIN" pin_num="31" pin_signal="ADC0_SE7/PTB3/FTM1_CH1/LPSPI0_SIN/FTM1_QD_PHA/TRGMUX_IN2"/>
                   <pin peripheral="ADC0" signal="SE, 0" pin_num="50" pin_signal="ADC0_SE0/ACMP0_IN0/PTA0/FTM2_CH1/LPI2C0_SCLS/FXIO_D2/FTM2_QD_PHA/LPUART0_CTS/TRGMUX_OUT3"/>
@@ -85,6 +89,30 @@
                   <pin peripheral="GPIOD" signal="GPIO, 7" pin_num="22" pin_signal="PTD7/LPUART2_TX/FTM2_FLT3"/>
                   <pin peripheral="GPIOC" signal="GPIO, 3" pin_num="20" pin_signal="ADC0_SE11/ACMP0_IN4/EXTAL32/PTC3/FTM0_CH3/CAN0_TX"/>
                   <pin peripheral="GPIOB" signal="GPIO, 5" pin_num="18" pin_signal="PTB5/FTM0_CH5/LPSPI0_PCS1/TRGMUX_IN0/ACMP1_OUT"/>
+                  <pin peripheral="GPIOE" signal="GPIO, 11" pin_num="3" pin_signal="ADC2_SE13/PTE11/PWT_IN1/LPTMR0_ALT1/FTM2_CH5/FXIO_D5/TRGMUX_OUT5"/>
+                  <pin peripheral="GPIOB" signal="GPIO, 7" pin_num="11" pin_signal="EXTAL/PTB7/LPI2C0_SCL"/>
+                  <pin peripheral="GPIOE" signal="GPIO, 3" pin_num="13" pin_signal="PTE3/FTM0_FLT0/LPUART2_RTS/FTM2_FLT0/TRGMUX_IN6/ACMP2_OUT"/>
+                  <pin peripheral="GPIOE" signal="GPIO, 8" pin_num="17" pin_signal="ACMP0_IN3/PTE8/FTM0_CH6"/>
+                  <pin peripheral="GPIOC" signal="GPIO, 2" pin_num="21" pin_signal="ADC0_SE10/ACMP0_IN5/XTAL32/PTC2/FTM0_CH2/CAN0_RX"/>
+                  <pin peripheral="GPIOD" signal="GPIO, 6" pin_num="23" pin_signal="PTD6/LPUART2_RX/FTM2_FLT2"/>
+                  <pin peripheral="GPIOC" signal="GPIO, 1" pin_num="25" pin_signal="ADC0_SE9/ACMP1_IN3/PTC1/FTM0_CH1/FTM1_CH7"/>
+                  <pin peripheral="GPIOC" signal="GPIO, 17" pin_num="27" pin_signal="ADC0_SE15/PTC17/FTM1_FLT3/LPI2C1_SCLS"/>
+                  <pin peripheral="GPIOC" signal="GPIO, 15" pin_num="29" pin_signal="ADC0_SE13/ACMP2_IN4/PTC15/FTM1_CH3"/>
+                  <pin peripheral="GPIOB" signal="GPIO, 0" pin_num="34" pin_signal="ADC0_SE4/ADC1_SE14/PTB0/LPUART0_RX/LPSPI0_PCS0/LPTMR0_ALT3/PWT_IN3"/>
+                  <pin peripheral="GPIOC" signal="GPIO, 8" pin_num="36" pin_signal="ADC2_SE14/PTC8/LPUART1_RX/FTM1_FLT0/LPUART0_CTS"/>
+                  <pin peripheral="GPIOA" signal="GPIO, 6" pin_num="38" pin_signal="ADC0_SE2/ACMP1_IN0/PTA6/FTM0_FLT1/LPSPI1_PCS1/LPUART1_CTS"/>
+                  <pin peripheral="GPIOB" signal="GPIO, 13" pin_num="42" pin_signal="ADC1_SE8/ADC2_SE8/PTB13/FTM0_CH1/FTM3_FLT1"/>
+                  <pin peripheral="GPIOB" signal="GPIO, 12" pin_num="43" pin_signal="ADC1_SE7/PTB12/FTM0_CH0/FTM3_FLT2"/>
+                  <pin peripheral="GPIOD" signal="GPIO, 4" pin_num="44" pin_signal="ADC1_SE6/ACMP1_IN6/PTD4/FTM0_FLT3/FTM3_FLT3"/>
+                  <pin peripheral="GPIOC" signal="GPIO, 6" pin_num="52" pin_signal="ADC1_SE4/PTC6/LPUART1_RX/CAN1_RX/FTM3_CH2"/>
+                  <pin peripheral="GPIOA" signal="GPIO, 12" pin_num="56" pin_signal="ADC2_SE5/PTA12/FTM1_CH6/CAN1_RX/LPI2C1_SDAS"/>
+                  <pin peripheral="GPIOE" signal="GPIO, 2" pin_num="54" pin_signal="ADC1_SE10/PTE2/LPSPI0_SOUT/LPTMR0_ALT3/FTM3_CH6/PWT_IN3/LPUART1_CTS"/>
+                  <pin peripheral="GPIOE" signal="GPIO, 0" pin_num="60" pin_signal="ADC2_SE7/PTE0/LPSPI0_SCK/TCLK1/LPI2C1_SDA/FTM1_FLT2"/>
+                  <pin peripheral="GPIOA" signal="GPIO, 11" pin_num="57" pin_signal="PTA11/FTM1_CH5/LPUART0_RX/FXIO_D1"/>
+                  <pin peripheral="GPIOB" signal="GPIO, 1" pin_num="33" pin_signal="ADC0_SE5/ADC1_SE15/PTB1/LPUART0_TX/LPSPI0_SOUT/TCLK0"/>
+                  <pin peripheral="LPSPI0" signal="SOUT" pin_num="19" pin_signal="ACMP1_IN2/PTB4/FTM0_CH4/LPSPI0_SOUT/TRGMUX_IN1"/>
+                  <pin peripheral="CAN0" signal="TX" pin_num="5" pin_signal="PTE5/TCLK2/FTM2_QD_PHA/FTM2_CH3/CAN0_TX/FXIO_D7/EWM_IN"/>
+                  <pin peripheral="CAN0" signal="RX" pin_num="6" pin_signal="PTE4/BUSOUT/FTM2_QD_PHB/FTM2_CH2/CAN0_RX/FXIO_D6/EWM_OUT_b"/>
                </pins>
             </function>
          </functions_list>
