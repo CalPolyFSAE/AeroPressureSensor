@@ -9,6 +9,7 @@ using namespace BSP;
 
 uint8_t flag;
 uint32_t data[20];
+uint16_t can_Data[20];
 
 #define ADDRESS 0x300
 
@@ -17,7 +18,7 @@ uint32_t data[20];
 void sendcan(uint8_t offset, uint32_t value){
     can::CANlight::frame f;
     f.ext = 1;
-    f.id = ADDRESS+offset;
+    f.id = 500;
     f.data[0] = value & 0xff;
     f.data[1] = (value>>8) & 0xff;
     f.data[2] = (value>>16) & 0xff;
@@ -112,7 +113,7 @@ int main(void) {
     //Sensor 15
 
     spi.xcvrs[1].csport = gpio::PortE;
-    spi.xcvrs[1].cspin = 2;
+    spi.xcvrs[1].cspin = 1;
 
     spi.mastertx(1, tx, rx, 8);
 
@@ -337,9 +338,17 @@ int main(void) {
             spi.xcvrs[1].csport = gpio::PortE;
             spi.xcvrs[1].cspin = 9;
 
+
+
             spi.mastertx(1, tx+5, rx, 3);
             while(spi.xcvrs[1].transmitting);
             data[11] = rx[2] + (rx[1] << 8) + (rx[0] <<16);
+
+						
+						
+
+					//	can_Data[11] = (data[11] >> 8);
+
 
             sendcan(11, data[11]);
 
@@ -351,6 +360,8 @@ int main(void) {
             spi.mastertx(1, tx+5, rx, 3);
             while(spi.xcvrs[1].transmitting);
             data[10] = rx[2] + (rx[1] << 8) + (rx[0] <<16);
+
+						//can_Data[10] = (data[10] & 0xff00u);
 
             sendcan(10, data[10]);
 
@@ -364,6 +375,8 @@ int main(void) {
             while(spi.xcvrs[1].transmitting);
             data[12] = rx[2] + (rx[1] << 8) + (rx[0] <<16);
 
+						//can_Data[12] = (data[12] & 0xff00u);
+
             sendcan(12, data[12]);
 
             //transmit ones and log rx buffer into data array 
@@ -374,6 +387,8 @@ int main(void) {
             spi.mastertx(1, tx+5, rx, 3);
             while(spi.xcvrs[1].transmitting);
             data[13] = rx[2] + (rx[1] << 8) + (rx[0] <<16);
+
+						
 
             sendcan(13, data[13]);
 
@@ -390,12 +405,13 @@ int main(void) {
 
             //transmit ones and log rx buffer into data array 
             //sensor 16
-            spi.xcvrs[1].csport = gpio::PortE;
-            spi.xcvrs[1].cspin = 2;
+            spi.xcvrs[1].csport = gpio::PortA;
+            spi.xcvrs[1].cspin = 13;
 
             spi.mastertx(1, tx+5, rx, 3);
             while(spi.xcvrs[1].transmitting);
             data[15] = rx[2] + (rx[1] << 8) + (rx[0] <<16);
+
 
             sendcan(15, data[15]);
 
