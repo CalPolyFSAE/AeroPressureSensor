@@ -11,14 +11,14 @@ uint8_t flag;
 uint32_t data[20];
 uint16_t can_Data[20];
 
-#define ADDRESS 0x300
+#define ADDRESS 0x500
 
 #define PERIOD 50 // ms between cycles
 
 void sendcan(uint8_t offset, uint32_t value){
     can::CANlight::frame f;
     f.ext = 1;
-    f.id = 500;
+    f.id = ADDRESS + offset;
     f.data[0] = value & 0xff;
     f.data[1] = (value>>8) & 0xff;
     f.data[2] = (value>>16) & 0xff;
