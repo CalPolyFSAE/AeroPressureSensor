@@ -5,11 +5,22 @@
 #include "canlight.h"
 #include "spi.h"
 #include "fsl_lpspi.h"
+
+#include "Pressure_Comp.h"
+#include "crc.h"
+
+
+#include "float.h"
+
 using namespace BSP;
 
+
+//Global Variables
 uint8_t flag;
 uint32_t data[20];
 uint16_t can_Data[20];
+uint8_t EEPROM_Data_Array[451];
+
 
 #define ADDRESS 0x500
 
@@ -69,9 +80,27 @@ int main(void) {
     spi.initMaster(0, &mconf);
 
 
-    //WREG Commands
+  
+  int counter_TR = 0;
+  if(counter_TR >= 0 && counter_TR < 255){
+
     uint8_t txE[8] = {0x03, 0x01, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
     uint8_t rxE[8];
+
+    txE[2]+= 0x01;
+  
+    counter_TR++;
+
+  }
+  else if (counter_TR >= 255 && counter_TR < 451){
+
+    uint8_t txE[8] = {0x0B, 0x01, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
+    uint8_t rxE[8];
+
+   EEPROM_Data_Array[counter_TR] = rxE[2];
+
+   counter_TR++;
+  }
 
 
     //Configure PortB and pin 6, followed by Create tx/rx arrays:
@@ -83,6 +112,16 @@ int main(void) {
     spi.mastertx(0, txE, rxE, 8);
 
     while(spi.xcvrs[0].transmitting);
+
+
+
+
+    Compensate_Pressure_Init();
+
+
+
+
+
 
     //Sensor 2
     spi.xcvrs[0].csport = gpio::PortC;
