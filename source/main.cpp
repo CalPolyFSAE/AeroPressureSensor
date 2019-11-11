@@ -79,25 +79,23 @@ int main(void) {
     //SPI module 0 controls sensors 1-10
     spi.initMaster(0, &mconf);
 
-
+  uint8_t txE[8] = {0x03, 0x01, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
+  uint8_t rxE[8];
   
   int counter_TR = 0;
+
+
   if(counter_TR >= 0 && counter_TR < 255){
 
-    uint8_t txE[8] = {0x03, 0x01, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
-    uint8_t rxE[8];
-
+    EEPROM_Data_Array[counter_TR] = rxE[2];
     txE[2]+= 0x01;
-  
-    counter_TR++;
 
+    counter_TR++;
   }
   else if (counter_TR >= 255 && counter_TR < 451){
 
-    uint8_t txE[8] = {0x0B, 0x01, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
-    uint8_t rxE[8];
-
    EEPROM_Data_Array[counter_TR] = rxE[2];
+   txE[2]+= 0x01;
 
    counter_TR++;
   }
@@ -114,14 +112,7 @@ int main(void) {
     while(spi.xcvrs[0].transmitting);
 
 
-
-
     Compensate_Pressure_Init();
-
-
-
-
-
 
     //Sensor 2
     spi.xcvrs[0].csport = gpio::PortC;
